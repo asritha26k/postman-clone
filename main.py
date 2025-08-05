@@ -5,8 +5,10 @@ import httpx
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+from fastapi.responses import HTMLResponse
 from typing import Dict, Any, Optional
 from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 from fastapi.responses import FileResponse
 
 # Initialize the FastAPI app
@@ -18,10 +20,9 @@ app = FastAPI(
 # Mount static directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Serve index.html at the root URL
-@app.get("/")
-def read_root():
-    return FileResponse("static/index.html")
+@app.get("/", response_class=HTMLResponse)
+async def serve_index():
+    return Path("static/index.html").read_text(encoding="utf-8")
 
 # --- CORS Middleware ---
 # This allows the frontend (running on a different origin) to communicate with this backend.
