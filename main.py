@@ -2,6 +2,7 @@
 # Import necessary libraries
 import time
 import httpx
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
@@ -22,7 +23,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 async def serve_index():
-    return Path("static/index.html").read_text(encoding="utf-8")
+    return FileResponse("static/index.html")
 
 # --- CORS Middleware ---
 # This allows the frontend (running on a different origin) to communicate with this backend.
