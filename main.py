@@ -105,11 +105,6 @@ async def proxy_request(request_data: APIRequest):
         }
 
 # --- Root Endpoint ---
-@app.get("/")
-def read_root():
-    """A simple root endpoint to confirm the server is running."""
-    return {"message": "Postman Clone Backend is running."}
-
 # To run this server:
 # 1. Install dependencies: pip install "fastapi[all]" httpx
 # 2. Run the server: uvicorn main:app --reload
