@@ -29,7 +29,7 @@ async def serve_index():
 # This allows the frontend (running on a different origin) to communicate with this backend.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins for simplicity. For production, restrict this.
+    allow_origins=["*"],  # Or specify your frontend domain
     allow_credentials=True,
     allow_methods=["*"],  # Allows all HTTP methods.
     allow_headers=["*"],  # Allows all headers.
