@@ -15,11 +15,13 @@ app = FastAPI(
     description="A proxy API to make HTTP requests on behalf of the frontend.",
     version="1.0.0"
 )
+# Mount static directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
-@app.get("/")
-def serve_frontend():
-    return FileResponse("static/index.html")
 
+# Serve index.html at the root URL
+@app.get("/")
+def read_root():
+    return FileResponse("static/index.html")
 
 # --- CORS Middleware ---
 # This allows the frontend (running on a different origin) to communicate with this backend.
