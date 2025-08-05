@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postman Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- History Sidebar -->
+        <aside class="history-sidebar">
+            <div class="history-header">
+                <h2>History</h2>
+                <button id="clear-history-btn" title="Clear all history">Clear All</button>
+            </div>
+            <ul id="history-list">
+                <!-- History items will be populated here by JS -->
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="tab-bar">
+                <!-- Tabs will be populated here by JS -->
+                <button id="new-tab-btn" class="new-tab-btn">+</button>
+            </div>
+            <div id="tab-content-panels">
+                <!-- Tab content will be populated here by JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- This is a template for a single tab's content. It's hidden and cloned by JS. -->
+    <template id="tab-content-template">
+        <div class="tab-content-panel">
+             <div class="request-container">
+                <div class="url-bar">
+                    <select class="method-select">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="PATCH">PATCH</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                    <input type="url" class="url-input" placeholder="https://api.example.com/data">
+                    <button class="send-btn">Send</button>
+                    <button class="clear-btn">Clear</button>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-link active" data-tab="params">Query Params</button>
+                <button class="tab-link" data-tab="headers">Headers</button>
+                <button class="tab-link" data-tab="body">Body</button>
+            </div>
+
+            <div class="tab-content-container">
+                <div data-tab-id="params" class="tab-content active">
+                    <div class="kv-list params-list"></div>
+                    <button class="add-kv-btn add-param-btn">+ Add Param</button>
+                </div>
+                <div data-tab-id="headers" class="tab-content">
+                    <div class="kv-list headers-list"></div>
+                    <button class="add-kv-btn add-header-btn">+ Add Header</button>
+                </div>
+                <div data-tab-id="body" class="tab-content">
+                    <textarea class="request-body" placeholder='{ "key": "value" }'></textarea>
+                </div>
+            </div>
+
+            <h2>Response</h2>
+            <div class="response-container">
+                 <div class="response-meta">
+                    <span>Status: <strong class="status-code"></strong></span>
+                    <span>Time: <strong class="response-time"></strong></span>
+                </div>
+                 <div class="tabs">
+                    <button class="tab-link-response active" data-tab-response="response-body-tab">Body</button>
+                    <button class="tab-link-response" data-tab-response="response-headers-tab">Headers</button>
+                </div>
+                <div class="tab-content-container">
+                    <div data-tab-response-id="response-body-tab" class="tab-content-response active">
+                        <pre class="response-body"></pre>
+                    </div>
+                    <div data-tab-response-id="response-headers-tab" class="tab-content-response">
+                         <pre class="response-headers"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="spinner" style="display: none;"></div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
