@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURATION ---
-    const BACKEND_URL = "https://postman-clone-5ovy.onrender.com";
+    const BACKEND_URL = '/proxy';
     const MAX_HISTORY_ITEMS = 30;
 
     // --- DOM ELEMENT REFERENCES ---
